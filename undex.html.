@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SD N 1 TEJOREJO - Cerdas, Berkarakter, Berbudaya</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#1e3a8a', // Navy / Biru Sekolah
+                            lightBlue: '#3b82f6',
+                            gold: '#f59e0b', // Gold / Kuning hangat
+                            darkGold: '#d97706',
+                            bgGray: '#f8fafc'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .active-tab {
+            color: #f59e0b !important;
+            border-bottom: 2px solid #f59e0b;
+        }
+        .active-mobile-tab {
+            background-color: #1e3a8a;
+            color: #ffffff !important;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-brand-bgGray text-slate-800 flex flex-col min-h-screen">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-50 bg-brand-blue text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo & Brand Name -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('beranda')">
+                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center p-1 shadow">
+                        <!-- Logo Tut Wuri Handayani / Sekolah Simple SVG -->
+                        <svg class="w-8 h-8 text-brand-blue" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM3.89 9L12 4.57 20.11 9 12 13.43 3.89 9zM12 16.5l-7-3.82v4.82C5 19.34 8.13 21 12 21s7-1.66 7-3.5v-4.82l-7 3.82z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="font-extrabold text-lg sm:text-xl tracking-wide uppercase leading-tight">SD N 1 TEJOREJO</h1>
+                        <p class="text-xs text-brand-gold font-medium tracking-wider">Unggul dalam Prestasi & Berkarakter</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex space-x-1 lg:space-x-4 text-sm font-medium">
+                    <button onclick="switchTab('beranda')" id="nav-beranda" class="nav-btn px-3 py-2 rounded-md transition hover:text-brand-gold">Beranda</button>
+                    <button onclick="switchTab('profil')" id="nav-profil" class="nav-btn px-3 py-2 rounded-md transition hover:text-brand-gold">Profil Sekolah</button>
+                    <button onclick="switchTab('guru')" id="nav-guru" class="nav-btn px-3 py-2 rounded-md transition hover:text-brand-gold">Guru & Tendik</button>
+                    <button onclick="switchTab('berita')" id="nav-berita" class="nav-btn px-3 py-2 rounded-md transition hover:text-brand-gold">Berita</button>
+                    <button onclick="switchTab('galeri')" id="nav-galeri" class="nav-btn px-3 py-2 rounded-md transition hover:text-brand-gold">Galeri</button>
+                    <button onclick="switchTab('ppdb')" id="nav-ppdb" class="nav-btn px-3 py-2 rounded-md transition hover:text-brand-gold">PPDB</button>
+                    <button onclick="switchTab('kontak')" id="nav-kontak" class="nav-btn px-3 py-2 rounded-md transition hover:text-brand-gold">Kontak</button>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white hover:text-brand-gold focus:outline-none p-2 rounded-md" aria-label="Menu">
+                        <i data-lucide="menu" class="w-7 h-7"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-blue-900 border-t border-blue-800 transition-all duration-300">
+            <div class="px-4 pt-2 pb-4 space-y-1 sm:px-3 text-sm">
+                <button onclick="switchTab('beranda')" id="mob-nav-beranda" class="mob-nav-btn block w-full text-left px-3 py-2 rounded-md font-medium text-slate-100 hover:bg-brand-blue">Beranda</button>
+                <button onclick="switchTab('profil')" id="mob-nav-profil" class="mob-nav-btn block w-full text-left px-3 py-2 rounded-md font-medium text-slate-100 hover:bg-brand-blue">Profil Sekolah</button>
+                <button onclick="switchTab('guru')" id="mob-nav-guru" class="mob-nav-btn block w-full text-left px-3 py-2 rounded-md font-medium text-slate-100 hover:bg-brand-blue">Guru & Tendik</button>
+                <button onclick="switchTab('berita')" id="mob-nav-berita" class="mob-nav-btn block w-full text-left px-3 py-2 rounded-md font-medium text-slate-100 hover:bg-brand-blue">Berita</button>
+                <button onclick="switchTab('galeri')" id="mob-nav-galeri" class="mob-nav-btn block w-full text-left px-3 py-2 rounded-md font-medium text-slate-100 hover:bg-brand-blue">Galeri</button>
+                <button onclick="switchTab('ppdb')" id="mob-nav-ppdb" class="mob-nav-btn block w-full text-left px-3 py-2 rounded-md font-medium text-slate-100 hover:bg-brand-blue">PPDB</button>
+                <button onclick="switchTab('kontak')" id="mob-nav-kontak" class="mob-nav-btn block w-full text-left px-3 py-2 rounded-md font-medium text-slate-100 hover:bg-brand-blue">Kontak</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-grow">
+        
+        <!-- SECTION 1: BERANDA -->
+        <section id="section-beranda" class="tab-content">
+            <!-- Hero Banner -->
+            <div class="relative bg-brand-blue text-white overflow-hidden">
+                <div class="absolute inset-0 z-0 opacity-20 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&q=80&w=1200');"></div>
+                <div class="relative z-10 max-w-7xl mx-auto px-4 py-20 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-10">
+                    <div class="max-w-2xl text-center md:text-left">
+                        <span class="inline-block px-3 py-1 bg-brand-gold text-slate-900 font-semibold text-xs rounded-full uppercase tracking-wider mb-4">Selamat Datang di Portal Resmi</span>
+                        <h2 class="text-3xl sm:text-5xl font-extrabold leading-tight mb-4">Mewujudkan Generasi Cerdas, Berkarakter & Berbudaya</h2>
+                        <p class="text-blue-100 text-base sm:text-lg mb-8 leading-relaxed">SD Negeri 1 Tejorejo berkomitmen menyediakan pendidikan dasar berkualitas prima dengan memadukan akademik, akhlak mulia, dan pengembangan potensi siswa secara optimal.</p>
+                        <div class="flex flex-wrap justify-center md:justify-start gap-4">
+                            <button onclick="switchTab('ppdb')" class="bg-brand-gold hover:bg-brand-darkGold text-slate-900 font-bold px-6 py-3 rounded-lg shadow-md transition flex items-center space-x-2">
+                                <span>Info PPDB Online</span>
+                                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                            </button>
+                            <button onclick="switchTab('profil')" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-lg border border-white/30 backdrop-blur-sm transition">
+                                Pelajari Profil Kami
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Hero Card / Illustration -->
+                    <div class="w-full md:w-5/12 bg-white text-slate-800 p-6 rounded-2xl shadow-2xl relative border-t-4 border-brand-gold">
+                        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=800" alt="Gedung Sekolah" class="w-full h-56 object-cover rounded-xl mb-4">
+                        <h3 class="font-bold text-lg text-brand-blue">SD N 1 TEJOREJO</h3>
+                        <p class="text-sm text-slate-600 mt-1">Lingkungan belajar yang asri, aman, kondusif, dan didukung oleh fasilitas serta tenaga pengajar berdedikasi tinggi.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="bg-white border-b shadow-sm">
+                <div class="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                        <div class="p-4 rounded-xl bg-blue-50 border border-blue-100">
+                            <i data-lucide="users" class="w-8 h-8 mx-auto text-brand-blue mb-2"></i>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-brand-blue">340+</div>
+                            <div class="text-xs sm:text-sm font-medium text-slate-600 mt-1">Siswa Aktif</div>
+                        </div>
+                        <div class="p-4 rounded-xl bg-amber-50 border border-amber-100">
+                            <i data-lucide="award" class="w-8 h-8 mx-auto text-brand-gold mb-2"></i>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-brand-gold">A</div>
+                            <div class="text-xs sm:text-sm font-medium text-slate-600 mt-1">Akreditasi Sekolah</div>
+                        </div>
+                        <div class="p-4 rounded-xl bg-blue-50 border border-blue-100">
+                            <i data-lucide="user-check" class="w-8 h-8 mx-auto text-brand-blue mb-2"></i>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-brand-blue">18</div>
+                            <div class="text-xs sm:text-sm font-medium text-slate-600 mt-1">Guru & Tendik</div>
+                        </div>
+                        <div class="p-4 rounded-xl bg-green-50 border border-green-100">
+                            <i data-lucide="book-open" class="w-8 h-8 mx-auto text-green-600 mb-2"></i>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-green-600">12</div>
+                            <div class="text-xs sm:text-sm font-medium text-slate-600 mt-1">Rombongan Belajar</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sambutan Kepala Sekolah -->
+            <div class="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+                <div class="bg-white rounded-2xl shadow-md p-6 sm:p-10 border border-slate-100 flex flex-col md:flex-row gap-8 items-center">
+                    <div class="w-48 h-48 sm:w-56 sm:h-56 flex-shrink-0 rounded-2xl overflow-hidden shadow-lg border-4 border-brand-gold">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=600" alt="Kepala Sekolah" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <div class="inline-flex items-center space-x-2 text-brand-blue text-sm font-semibold mb-2">
+                            <i data-lucide="quote" class="w-4 h-4 text-brand-gold"></i>
+                            <span>Sambutan Kepala Sekolah</span>
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-bold text-slate-800 mb-4">Selamat Datang di SD N 1 Tejorejo</h3>
+                        <p class="text-slate-600 leading-relaxed mb-4">
+                            "Assalamu’alaikum Warahmatullahi Wabarakatuh. Puji syukur kita panjatkan kehadirat Allah SWT atas rahmat dan karunia-Nya. Kami sangat bangga dapat menyapa Anda melalui website resmi SD N 1 Tejorejo."
+                        </p>
+                        <p class="text-slate-600 leading-relaxed mb-6">
+                            Website ini hadir sebagai sarana informasi, komunikasi, dan transparansi kegiatan pendidikan di sekolah kami. Kami berkomitmen mendidik generasi penerus bangsa yang tak hanya cerdas secara akademik, namun juga memiliki akhlak mulia serta siap menghadapi tantangan zaman.
+                        </p>
+                        <div>
+                            <h4 class="font-bold text-brand-blue text-base">H. Sugiyanto, S.Pd., M.Pd.</h4>
+                            <p class="text-xs text-slate-500">Kepala Sekolah SD N 1 Tejorejo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Highlight Pengumuman & Berita Singkat -->
+            <div class="max-w-7xl mx-auto px-4 pb-16 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center mb-8">
+                    <div>
+                        <h3 class="text-2xl font-bold text-slate-800">Berita & Informasi Terbaru</h3>
+                        <p class="text-sm text-slate-500">Kabar kegiatan terbaru di SD N 1 Tejorejo</p>
+                    </div>
+                    <button onclick="switchTab('berita')" class="text-brand-blue font-semibold hover:text-brand-gold text-sm flex items-center gap-1">
+                        Lihat Semua <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- News Item 1 -->
+                    <div class="bg-white rounded-xl shadow-sm border overflow-hidden hover:shadow-md transition">
+                        <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&q=80&w=600" alt="Pramuka" class="w-full h-48 object-cover">
+                        <div class="p-5">
+                            <span class="text-xs font-semibold text-brand-gold uppercase tracking-wider">Kegiatan Siswa</span>
+                            <h4 class="font-bold text-lg text-slate-800 mt-1 mb-2 hover:text-brand-blue cursor-pointer" onclick="openNewsModal('Upacara Hari Pramuka Berlangsung Khidmat', '14 Agustus 2026', 'Seluruh siswa dan guru SD N 1 Tejorejo mengikuti upacara bendera memperingati Hari Pramuka dengan semangat kebersamaan dan kedisiplinan tinggi.')">Upacara Hari Pramuka Berlangsung Khidmat</h4>
+                            <p class="text-slate-600 text-sm line-clamp-2">Seluruh siswa dan guru SD N 1 Tejorejo mengikuti upacara bendera memperingati Hari Pramuka...</p>
+                            <div class="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center text-xs text-slate-400">
+                                <span><i data-lucide="calendar" class="w-3.5 h-3.5 inline mr-1"></i>14 Agu 2026</span>
+                                <span class="text-brand-blue font-medium cursor-pointer" onclick="openNewsModal('Upacara Hari Pramuka Berlangsung Khidmat', '14 Agustus 2026', 'Seluruh siswa dan guru SD N 1 Tejorejo mengikuti upacara bendera memperingati Hari Pramuka dengan semangat kebersamaan dan kedisiplinan tinggi. Acara diisi dengan perlombaan ketangkasan dan pemberian penghargaan siswa berprestasi.')">Baca Selengkapnya</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- News Item 2 -->
+                    <div class="bg-white rounded-xl shadow-sm border overflow-hidden hover:shadow-md transition">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=600" alt="Lomba Matematika" class="w-full h-48 object-cover">
+                        <div class="p-5">
+                            <span class="text-xs font-semibold text-brand-gold uppercase tracking-wider">Prestasi</span>
+                            <h4 class="font-bold text-lg text-slate-800 mt-1 mb-2 hover:text-brand-blue cursor-pointer" onclick="openNewsModal('Siswa SD N 1 Tejorejo Meraih Juara Olimpiade Matematika', '02 Agustus 2026', 'Ananda Ahmad Rizky berhasil membawa pulang medali emas tingkat Kabupaten dalam ajang Olimpiade Sains Nasional.')">Siswa SD N 1 Tejorejo Juara 1 Olimpiade Matematika</h4>
+                            <p class="text-slate-600 text-sm line-clamp-2">Ananda Ahmad Rizky berhasil membawa pulang medali emas tingkat Kabupaten dalam ajang Olimpiade...</p>
+                            <div class="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center text-xs text-slate-400">
+                                <span><i data-lucide="calendar" class="w-3.5 h-3.5 inline mr-1"></i>02 Agu 2026</span>
+                                <span class="text-brand-blue font-medium cursor-pointer" onclick="openNewsModal('Siswa SD N 1 Tejorejo Meraih Juara Olimpiade Matematika', '02 Agustus 2026', 'Ananda Ahmad Rizky berhasil membawa pulang medali emas tingkat Kabupaten dalam ajang Olimpiade Sains Nasional (OSN) Matematika tingkat SD. Pihak sekolah menyampaikan apresiasi sebesar-besarnya.')">Baca Selengkapnya</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- News Item 3 -->
+                    <div class="bg-white rounded-xl shadow-sm border overflow-hidden hover:shadow-md transition">
+                        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=600" alt="Pengumuman PPDB" class="w-full h-48 object-cover">
+                        <div class="p-5">
+                            <span class="text-xs font-semibold text-brand-gold uppercase tracking-wider">Pengumuman</span>
+                            <h4 class="font-bold text-lg text-slate-800 mt-1 mb-2 hover:text-brand-blue cursor-pointer" onclick="openNewsModal('Pembukaan PPDB Tahun Ajaran 2026/2027', '20 Juni 2026', 'Pendaftaran Peserta Didik Baru (PPDB) Gelombang 1 resmi dibuka mulai tanggal 1 Juli. Pendaftaran dapat dilakukan secara online maupun offline.')">Pembukaan PPDB Tahun Ajaran 2026/2027</h4>
+                            <p class="text-slate-600 text-sm line-clamp-2">Pendaftaran Peserta Didik Baru (PPDB) Gelombang 1 resmi dibuka mulai tanggal 1 Juli...</p>
+                            <div class="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center text-xs text-slate-400">
+                                <span><i data-lucide="calendar" class="w-3.5 h-3.5 inline mr-1"></i>20 Jun 2026</span>
+                                <span class="text-brand-blue font-medium cursor-pointer" onclick="openNewsModal('Pembukaan PPDB Tahun Ajaran 2026/2027', '20 Juni 2026', 'Pendaftaran Peserta Didik Baru (PPDB) Gelombang 1 resmi dibuka mulai tanggal 1 Juli. Pendaftaran dapat dilakukan secara online maupun offline di sekretariat PPDB SD N 1 Tejorejo.')">Baca Selengkapnya</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: PROFIL SEKOLAH -->
+        <section id="section-profil" class="tab-content hidden py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Page Title -->
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl font-extrabold text-brand-blue">Profil SD N 1 Tejorejo</h2>
+                    <div class="w-20 h-1 bg-brand-gold mx-auto my-3 rounded-full"></div>
+                    <p class="text-slate-600">Mengenal lebih dekat sejarah, visi, misi, dan keunggulan institusi kami.</p>
+                </div>
+
+                <!-- Sejarah -->
+                <div class="bg-white rounded-2xl shadow-sm border p-6 sm:p-10 mb-10">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="p-3 bg-blue-100 rounded-lg text-brand-blue">
+                            <i data-lucide="history" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-800">Sejarah Singkat</h3>
+                    </div>
+                    <p class="text-slate-600 leading-relaxed mb-4">
+                        SD Negeri 1 Tejorejo didirikan pada tahun 1978 di atas tanah hibah masyarakat desa Tejorejo. Berawal dari 3 ruang kelas sederhana, sekolah ini berkembang pesat menjadi salah satu sekolah dasar rujukan di wilayah Kecamatan Tejorejo.
+                    </p>
+                    <p class="text-slate-600 leading-relaxed">
+                        Selama lebih dari 4 dekade, SD N 1 Tejorejo telah mencetak ribuan alumni yang sukses di berbagai bidang. Dengan memprioritaskan pendidikan karakter dan akademis, sekolah terus melakukan inovasi dalam metode pembelajaran dan pemenuhan sarana prasarana digital modern.
+                    </p>
+                </div>
+
+                <!-- Visi & Misi -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Visi -->
+                    <div class="bg-gradient-to-br from-brand-blue to-blue-900 text-white rounded-2xl p-8 shadow-md">
+                        <div class="flex items-center space-x-3 mb-6">
+                            <div class="p-3 bg-white/10 rounded-lg text-brand-gold">
+                                <i data-lucide="compass" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold">Visi Sekolah</h3>
+                        </div>
+                        <blockquote class="text-lg font-medium text-amber-100 leading-relaxed italic border-l-4 border-brand-gold pl-4 my-4">
+                            "Terwujudnya Peserta Didik yang Bertaqwa, Berprestasi Tinggi, Berkarakter Pancasila, serta Peduli Lingkungan."
+                        </blockquote>
+                    </div>
+
+                    <!-- Misi -->
+                    <div class="bg-white rounded-2xl p-8 shadow-sm border">
+                        <div class="flex items-center space-x-3 mb-6">
+                            <div class="p-3 bg-amber-100 rounded-lg text-brand-gold">
+                                <i data-lucide="target" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-slate-800">Misi Sekolah</h3>
+                        </div>
+                        <ul class="space-y-3 text-slate-600">
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-gold mr-3 flex-shrink-0 mt-0.5"></i>
+                                <span>Menanamkan nilai-nilai keagamaan dan keimanan melalui kegiatan pembiasaan ibadah sehari-hari.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-gold mr-3 flex-shrink-0 mt-0.5"></i>
+                                <span>Melaksanakan proses pembelajaran yang aktif, inovatif, kreatif, dan menyenangkan (PAIKEM).</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-gold mr-3 flex-shrink-0 mt-0.5"></i>
+                                <span>Mengembangkan minat dan bakat siswa melalui kegiatan ekstrakurikuler yang beragam.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-gold mr-3 flex-shrink-0 mt-0.5"></i>
+                                <span>Mewujudkan lingkungan sekolah yang bersih, hijau, sehat, dan nyaman untuk belajar.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Identity Summary -->
+                <div class="mt-10 bg-blue-50 border border-blue-100 rounded-2xl p-6 sm:p-8">
+                    <h4 class="text-lg font-bold text-brand-blue mb-4">Identitas Sekolah</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-sm">
+                        <div><strong class="text-slate-700">NPSN:</strong> 20301234</div>
+                        <div><strong class="text-slate-700">Status:</strong> Negeri</div>
+                        <div><strong class="text-slate-700">Akreditasi:</strong> A (Sangat Baik)</div>
+                        <div><strong class="text-slate-700">Kurikulum:</strong> Kurikulum Merdeka</div>
+                        <div><strong class="text-slate-700">Waktu Belajar:</strong> Pagi / 6 Hari</div>
+                        <div><strong class="text-slate-700">Naungan:</strong> Kementerian Pendidikan & Kebudayaan</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: GURU DAN TENDIK -->
+        <section id="section-guru" class="tab-content hidden py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Page Title -->
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl font-extrabold text-brand-blue">Guru & Tenaga Kependidikan</h2>
+                    <div class="w-20 h-1 bg-brand-gold mx-auto my-3 rounded-full"></div>
+                    <p class="text-slate-600">Tenaga pendidik profesional, kompeten, dan penuh kasih sayang yang siap membimbing siswa-siswi SD N 1 Tejorejo.</p>
+                </div>
+
+                <!-- Grid Guru -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Guru 1 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-sm border text-center p-6 hover:shadow-md transition">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=300" alt="Kepala Sekolah" class="w-28 h-28 mx-auto rounded-full object-cover border-4 border-brand-gold mb-4">
+                        <h3 class="font-bold text-slate-800 text-lg">H. Sugiyanto, S.Pd., M.Pd.</h3>
+                        <p class="text-brand-blue font-semibold text-sm">Kepala Sekolah</p>
+                        <p class="text-xs text-slate-500 mt-2">NIP. 19680512 199303 1 004</p>
+                    </div>
+
+                    <!-- Guru 2 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-sm border text-center p-6 hover:shadow-md transition">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=300" alt="Guru Kelas 6" class="w-28 h-28 mx-auto rounded-full object-cover border-4 border-blue-200 mb-4">
+                        <h3 class="font-bold text-slate-800 text-lg">Siti Rahmawati, S.Pd.</h3>
+                        <p class="text-brand-blue font-semibold text-sm">Guru Kelas 6</p>
+                        <p class="text-xs text-slate-500 mt-2">NIP. 19790315 200501 2 008</p>
+                    </div>
+
+                    <!-- Guru 3 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-sm border text-center p-6 hover:shadow-md transition">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=300" alt="Guru Kelas 1" class="w-28 h-28 mx-auto rounded-full object-cover border-4 border-blue-200 mb-4">
+                        <h3 class="font-bold text-slate-800 text-lg">Budi Santoso, S.Pd.SD</h3>
+                        <p class="text-brand-blue font-semibold text-sm">Guru Kelas 1</p>
+                        <p class="text-xs text-slate-500 mt-2">NIP. 19840822 201001 1 012</p>
+                    </div>
+
+                    <!-- Guru 4 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-sm border text-center p-6 hover:shadow-md transition">
+                        <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&q=80&w=300" alt="Guru Agama" class="w-28 h-28 mx-auto rounded-full object-cover border-4 border-blue-200 mb-4">
+                        <h3 class="font-bold text-slate-800 text-lg">Ahmad Fauzi, S.Pd.I</h3>
+                        <p class="text-brand-blue font-semibold text-sm">Guru PAI</p>
+                        <p class="text-xs text-slate-500 mt-2">NIP. 19881104 201402 1 003</p>
+                    </div>
+
+                    <!-- Guru 5 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-sm border text-center p-6 hover:shadow-md transition">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=300" alt="Guru PJOK" class="w-28 h-28 mx-auto rounded-full object-cover border-4 border-blue-200 mb-4">
+                        <h3 class="font-bold text-slate-800 text-lg">Dewi Lestari, S.Pd.Jas</h3>
+                        <p class="text-brand-blue font-semibold text-sm">Guru PJOK / Olahraga</p>
+                        <p class="text-xs text-slate-500 mt-2">NIP. 19910418 201903 2 015</p>
+                    </div>
+
+                    <!-- Guru 6 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-sm border text-center p-6 hover:shadow-md transition">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=300" alt="Guru B. Inggris" class="w-28 h-28 mx-auto rounded-full object-cover border-4 border-blue-200 mb-4">
+                        <h3 class="font-bold text-slate-800 text-lg">Eko Prasetyo, S.Pd.</h3>
+                        <p class="text-brand-blue font-semibold text-sm">Guru Bahasa Inggris</p>
+                        <p class="text-xs text-slate-500 mt-2">NIP. 19930712 202012 1 007</p>
+                    </div>
+
+                    <!-- Tendik 1 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-sm border text-center p-6 hover:shadow-md transition">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=300" alt="Staff TU" class="w-28 h-28 mx-auto rounded-full object-cover border-4 border-amber-200 mb-4">
+                        <h3 class="font-bold text-slate-800 text-lg">Rina Welandari, A.Md.</h3>
+                        <p class="text-brand-gold font-semibold text-sm">Kepala Tata Usaha</p>
+                        <p class="text-xs text-slate-500 mt-2">NIP. 19860210 200902 2 004</p>
+                    </div>
+
+                    <!-- Tendik 2 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-sm border text-center p-6 hover:shadow-md transition">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=300" alt="Pustakawan" class="w-28 h-28 mx-auto rounded-full object-cover border-4 border-amber-200 mb-4">
+                        <h3 class="font-bold text-slate-800 text-lg">Herman Wijaya, S.IP</h3>
+                        <p class="text-brand-gold font-semibold text-sm">Pustakawan Sekolah</p>
+                        <p class="text-xs text-slate-500 mt-2">NPT. 202101982</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: BERITA -->
+        <section id="section-berita" class="tab-content hidden py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Page Title -->
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl font-extrabold text-brand-blue">Berita & Informasi</h2>
+                    <div class="w-20 h-1 bg-brand-gold mx-auto my-3 rounded-full"></div>
+                    <p class="text-slate-600">Dapatkan wawasan dan berita terbaru seputar kegiatan dan perkembangan di SD N 1 Tejorejo.</p>
+                </div>
+
+                <!-- News Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- News item 1 -->
+                    <div class="bg-white rounded-xl shadow-sm border overflow-hidden flex flex-col">
+                        <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&q=80&w=600" alt="Berita 1" class="h-48 w-full object-cover">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <span class="text-xs font-semibold text-brand-gold uppercase">Kegiatan</span>
+                            <h3 class="font-bold text-lg text-slate-800 mt-1 mb-2">Upacara Hari Pramuka Berlangsung Khidmat</h3>
+                            <p class="text-slate-600 text-sm mb-4 flex-grow">Seluruh siswa dan guru SD N 1 Tejorejo mengikuti upacara bendera memperingati Hari Pramuka dengan penuh khidmat.</p>
+                            <button onclick="openNewsModal('Upacara Hari Pramuka Berlangsung Khidmat', '14 Agustus 2026', 'Seluruh siswa dan guru SD N 1 Tejorejo mengikuti upacara bendera memperingati Hari Pramuka dengan penuh khidmat. Kegiatan dilanjutkan dengan atraksi simpul dan pionering oleh regu pramuka penggalang.')" class="text-brand-blue font-semibold text-sm hover:underline text-left">Baca Selengkapnya &rarr;</button>
+                        </div>
+                    </div>
+
+                    <!-- News item 2 -->
+                    <div class="bg-white rounded-xl shadow-sm border overflow-hidden flex flex-col">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=600" alt="Berita 2" class="h-48 w-full object-cover">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <span class="text-xs font-semibold text-brand-gold uppercase">Prestasi</span>
+                            <h3 class="font-bold text-lg text-slate-800 mt-1 mb-2">Siswa SD N 1 Tejorejo Meraih Juara 1 OSN Matematika</h3>
+                            <p class="text-slate-600 text-sm mb-4 flex-grow">Ahmad Rizky, siswa kelas 5, mengukir prestasi gemilang dengan menjuarai Olimpiade Sains Nasional tingkat kabupaten.</p>
+                            <button onclick="openNewsModal('Siswa SD N 1 Tejorejo Meraih Juara 1 OSN Matematika', '02 Agustus 2026', 'Ahmad Rizky, siswa kelas 5, mengukir prestasi gemilang dengan menjuarai Olimpiade Sains Nasional tingkat kabupaten. Ia berhasil mengalahkan 45 peserta lainnya dan akan mewakili kabupaten di tingkat provinsi.')" class="text-brand-blue font-semibold text-sm hover:underline text-left">Baca Selengkapnya &rarr;</button>
+                        </div>
+                    </div>
+
+                    <!-- News item 3 -->
+                    <div class="bg-white rounded-xl shadow-sm border overflow-hidden flex flex-col">
+                        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=600" alt="Berita 3" class="h-48 w-full object-cover">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <span class="text-xs font-semibold text-brand-gold uppercase">Informasi</span>
+                            <h3 class="font-bold text-lg text-slate-800 mt-1 mb-2">Pendaftaran PPDB Gelombang 1 Dibuka</h3>
+                            <p class="text-slate-600 text-sm mb-4 flex-grow">Pendaftaran calon siswa baru tahun ajaran 2026/2027 resmi dibuka secara online melalui portal sekolah ini.</p>
+                            <button onclick="openNewsModal('Pendaftaran PPDB Gelombang 1 Dibuka', '20 Juni 2026', 'Pendaftaran calon siswa baru tahun ajaran 2026/2027 resmi dibuka secara online melalui portal sekolah ini. Orang tua calon siswa dapat mengisi formulir yang telah disediakan pada menu PPDB.')" class="text-brand-blue font-semibold text-sm hover:underline text-left">Baca Selengkapnya &rarr;</button>
+                        </div>
+                    </div>
+
+                    <!-- News item 4 -->
+                    <div class="bg-white rounded-xl shadow-sm border overflow-hidden flex flex-col">
+                        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=600" alt="Berita 4" class="h-48 w-full object-cover">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <span class="text-xs font-semibold text-brand-gold uppercase">Fasilitas</span>
+                            <h3 class="font-bold text-lg text-slate-800 mt-1 mb-2">Peluncuran Ruang Komputer Komputer Baru</h3>
+                            <p class="text-slate-600 text-sm mb-4 flex-grow">Sekolah menambah 20 unit komputer baru untuk mendukung literasi digital dan asesmen nasional siswa.</p>
+                            <button onclick="openNewsModal('Peluncuran Ruang Komputer Baru', '10 Mei 2026', 'Sekolah menambah 20 unit komputer baru untuk mendukung literasi digital dan asesmen nasional siswa. Kepala Sekolah berharap fasilitas ini dapat dimanfaatkan secara maksimal oleh seluruh siswa.')" class="text-brand-blue font-semibold text-sm hover:underline text-left">Baca Selengkapnya &rarr;</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: GALERI -->
+        <section id="section-galeri" class="tab-content hidden py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Page Title -->
+                <div class="text-center max-w-3xl mx-auto mb-8">
+                    <h2 class="text-3xl font-extrabold text-brand-blue">Galeri Foto Kegiatan</h2>
+                    <div class="w-20 h-1 bg-brand-gold mx-auto my-3 rounded-full"></div>
+                    <p class="text-slate-600">Dokumentasi momen keceriaan, belajar, dan berprestasi siswa-siswi SD N 1 Tejorejo.</p>
+                </div>
+
+                <!-- Filter Category Buttons -->
+                <div class="flex flex-wrap justify-center gap-2 mb-8">
+                    <button onclick="filterGallery('all')" class="gallery-filter-btn px-4 py-2 text-sm rounded-full bg-brand-blue text-white font-medium">Semua Foto</button>
+                    <button onclick="filterGallery('pembelajaran')" class="gallery-filter-btn px-4 py-2 text-sm rounded-full bg-white text-slate-600 hover:bg-slate-100 font-medium border">Pembelajaran</button>
+                    <button onclick="filterGallery('ekstrakurikuler')" class="gallery-filter-btn px-4 py-2 text-sm rounded-full bg-white text-slate-600 hover:bg-slate-100 font-medium border">Ekstrakurikuler</button>
+                    <button onclick="filterGallery('prestasi')" class="gallery-filter-btn px-4 py-2 text-sm rounded-full bg-white text-slate-600 hover:bg-slate-100 font-medium border">Prestasi</button>
+                </div>
+
+                <!-- Gallery Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    <div class="gallery-item pembelajaran relative group overflow-hidden rounded-xl shadow-sm border">
+                        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=600" class="w-full h-60 object-cover group-hover:scale-105 transition duration-300" alt="Belajar Kelas">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-4 text-white">
+                            <div>
+                                <h4 class="font-bold">Pembelajaran Praktik IPA</h4>
+                                <p class="text-xs text-amber-300">Kategori: Pembelajaran</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item ekstrakurikuler relative group overflow-hidden rounded-xl shadow-sm border">
+                        <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&q=80&w=600" class="w-full h-60 object-cover group-hover:scale-105 transition duration-300" alt="Pramuka">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-4 text-white">
+                            <div>
+                                <h4 class="font-bold">Latihan Pramuka Siaga</h4>
+                                <p class="text-xs text-amber-300">Kategori: Ekstrakurikuler</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item prestasi relative group overflow-hidden rounded-xl shadow-sm border">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=600" class="w-full h-60 object-cover group-hover:scale-105 transition duration-300" alt="Juara Lomba">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-4 text-white">
+                            <div>
+                                <h4 class="font-bold">Penerimaan Piala OSN</h4>
+                                <p class="text-xs text-amber-300">Kategori: Prestasi</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item pembelajaran relative group overflow-hidden rounded-xl shadow-sm border">
+                        <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&q=80&w=600" class="w-full h-60 object-cover group-hover:scale-105 transition duration-300" alt="Membaca Perpustakaan">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-4 text-white">
+                            <div>
+                                <h4 class="font-bold">Kegiatan Literasi Perpustakaan</h4>
+                                <p class="text-xs text-amber-300">Kategori: Pembelajaran</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item ekstrakurikuler relative group overflow-hidden rounded-xl shadow-sm border">
+                        <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&q=80&w=600" class="w-full h-60 object-cover group-hover:scale-105 transition duration-300" alt="Olahraga Basket">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-4 text-white">
+                            <div>
+                                <h4 class="font-bold">Ekskul Olahraga</h4>
+                                <p class="text-xs text-amber-300">Kategori: Ekstrakurikuler</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item prestasi relative group overflow-hidden rounded-xl shadow-sm border">
+                        <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&q=80&w=600" class="w-full h-60 object-cover group-hover:scale-105 transition duration-300" alt="Seni Tari">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-4 text-white">
+                            <div>
+                                <h4 class="font-bold">Juara Pentas Seni Tari Daerah</h4>
+                                <p class="text-xs text-amber-300">Kategori: Prestasi</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: PPDB / SPMB -->
+        <section id="section-ppdb" class="tab-content hidden py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Page Title -->
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl font-extrabold text-brand-blue">Penerimaan Peserta Didik Baru (PPDB)</h2>
+                    <div class="w-20 h-1 bg-brand-gold mx-auto my-3 rounded-full"></div>
+                    <p class="text-slate-600">Tahun Ajaran 2026/2027 SD N 1 Tejorejo. Pendaftaran Online Mudah & Cepat.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+                    <!-- Syarat Pendaftaran -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="p-3 bg-blue-100 text-brand-blue rounded-lg">
+                                <i data-lucide="file-text" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="font-bold text-lg text-slate-800">Syarat Pendaftaran</h3>
+                        </div>
+                        <ul class="space-y-2 text-sm text-slate-600">
+                            <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i> Usia minimal 6 tahun per 1 Juli 2026</li>
+                            <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i> Fotokopi Akta Kelahiran (2 Lembar)</li>
+                            <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i> Fotokopi Kartu Keluarga (2 Lembar)</li>
+                            <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i> Fotokopi KTP Orang Tua / Wali</li>
+                            <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i> Pas Foto 3x4 Warna (4 Lembar)</li>
+                            <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i> Ijazah TK/RA (Jika ada)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Jadwal PPDB -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="p-3 bg-amber-100 text-brand-gold rounded-lg">
+                                <i data-lucide="calendar" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="font-bold text-lg text-slate-800">Jadwal Pelaksanaan</h3>
+                        </div>
+                        <div class="space-y-3 text-sm">
+                            <div class="border-b pb-2">
+                                <div class="font-semibold text-brand-blue">Pendaftaran Online & Offline</div>
+                                <div class="text-slate-500">1 Juni - 5 Juli 2026</div>
+                            </div>
+                            <div class="border-b pb-2">
+                                <div class="font-semibold text-brand-blue">Seleksi Berkas & Zonasi</div>
+                                <div class="text-slate-500">6 - 8 Juli 2026</div>
+                            </div>
+                            <div class="border-b pb-2">
+                                <div class="font-semibold text-brand-blue">Pengumuman Kelulusan</div>
+                                <div class="text-slate-500">9 Juli 2026</div>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-brand-blue">Daftar Ulang</div>
+                                <div class="text-slate-500">10 - 12 Juli 2026</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Alur Pendaftaran -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="p-3 bg-blue-100 text-brand-blue rounded-lg">
+                                <i data-lucide="git-merge" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="font-bold text-lg text-slate-800">Alur Pendaftaran</h3>
+                        </div>
+                        <ol class="space-y-3 text-sm text-slate-600 list-decimal list-inside">
+                            <li>Isi Formulir Online di bawah ini.</li>
+                            <li>Cetak/simpan bukti pendaftaran.</li>
+                            <li>Verifikasi berkas fisik ke Sekretariat PPDB sekolah.</li>
+                            <li>Pantau pengumuman penerimaan.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Form PPDB Online -->
+                <div class="bg-white rounded-2xl shadow-md border p-6 sm:p-10 max-w-3xl mx-auto">
+                    <h3 class="text-2xl font-bold text-brand-blue mb-2 text-center">Formulir Pendaftaran PPDB Online</h3>
+                    <p class="text-sm text-slate-500 mb-6 text-center">Isi data calon siswa secara lengkap dan benar.</p>
+
+                    <!-- Alert / Message Box -->
+                    <div id="ppdb-alert" class="hidden mb-6 p-4 rounded-xl bg-green-100 border border-green-200 text-green-800 text-sm">
+                        <div class="flex items-center space-x-2">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-600"></i>
+                            <span class="font-semibold">Pendaftaran Berhasil Dikirim!</span>
+                        </div>
+                        <p class="mt-1">Terima kasih. Tim PPDB SD N 1 Tejorejo akan segera menghubungi Anda untuk langkah selanjutnya.</p>
+                    </div>
+
+                    <form id="form-ppdb" onsubmit="handlePPDBSubmit(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">Nama Lengkap Siswa *</label>
+                                <input type="text" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none" placeholder="Nama Calon Siswa">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">NIK (Nomor Induk Kependudukan) *</label>
+                                <input type="number" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none" placeholder="16 digit NIK">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">Tempat Lahir *</label>
+                                <input type="text" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none" placeholder="Kota Lahir">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">Tanggal Lahir *</label>
+                                <input type="date" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">Jenis Kelamin *</label>
+                                <select required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none">
+                                    <option value="">-- Pilih --</option>
+                                    <option value="L">Laki-Laki</option>
+                                    <option value="P">Perempuan</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">Nama Orang Tua / Wali *</label>
+                                <input type="text" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none" placeholder="Nama Ibu / Ayah">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">No. WhatsApp / HP Orang Tua *</label>
+                                <input type="tel" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none" placeholder="08xxxxxxxxxx">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">Asal Sekolah (TK/RA)</label>
+                                <input type="text" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none" placeholder="Nama TK Asal">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">Alamat Lengkap *</label>
+                            <textarea rows="3" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none" placeholder="Jalan, RT/RW, Desa, Kecamatan"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-brand-gold hover:bg-brand-darkGold text-slate-900 font-bold py-3 rounded-lg shadow-md transition text-center">
+                            Kirim Formulir PPDB
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: KONTAK -->
+        <section id="section-kontak" class="tab-content hidden py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Page Title -->
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl font-extrabold text-brand-blue">Hubungi Kami</h2>
+                    <div class="w-20 h-1 bg-brand-gold mx-auto my-3 rounded-full"></div>
+                    <p class="text-slate-600">Kami siap memberikan informasi lengkap mengenai informasi sekolah dan konsultasi pendidikan.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                    <!-- Info Kontak & Peta -->
+                    <div class="space-y-6">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border space-y-4">
+                            <h3 class="text-xl font-bold text-slate-800 mb-4">Informasi Kontak</h3>
+                            <div class="flex items-start space-x-3">
+                                <i data-lucide="map-pin" class="w-5 h-5 text-brand-gold flex-shrink-0 mt-1"></i>
+                                <span class="text-slate-600 text-sm">Jl. Raya Tejorejo No. 01, Desa Tejorejo, Kec. Tejorejo, Kab. Kendal, Jawa Tengah 51353</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i data-lucide="phone" class="w-5 h-5 text-brand-gold flex-shrink-0"></i>
+                                <span class="text-slate-600 text-sm">(0294) 381-234 / +62 812-3456-7890</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i data-lucide="mail" class="w-5 h-5 text-brand-gold flex-shrink-0"></i>
+                                <span class="text-slate-600 text-sm">sdn1tejorejo@sch.id</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i data-lucide="clock" class="w-5 h-5 text-brand-gold flex-shrink-0"></i>
+                                <span class="text-slate-600 text-sm">Senin - Sabtu: 07.00 - 13.00 WIB</span>
+                            </div>
+                        </div>
+
+                        <!-- Embedded Google Map -->
+                        <div class="bg-white rounded-2xl shadow-sm border overflow-hidden h-64">
+                            <iframe title="Peta Lokasi SD N 1 Tejorejo" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15844.750438641498!2d110.150000!3d-6.950000!2m3!1f0!0!f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNTcnMDAuMCJTIDExMMKwMDknMDAuMCJF!5e0!3m2!1sid!2sid!4v1650000000000!5m2!1sid!2sid" class="w-full h-full border-0" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Form Pesan -->
+                    <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border">
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">Kirim Pesan / Pertanyaan</h3>
+                        <p class="text-xs text-slate-500 mb-6">Silakan isi formulir di bawah ini untuk menghubungi pihak sekolah.</p>
+                        
+                        <div id="contact-alert" class="hidden mb-4 p-3 rounded-lg bg-green-100 text-green-800 text-xs font-medium">
+                            Pesan Anda telah berhasil terkirim. Terima kasih!
+                        </div>
+
+                        <form id="form-kontak" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">Nama Anda *</label>
+                                <input type="text" required class="w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none" placeholder="Masukkan nama lengkap">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">Email / No. HP *</label>
+                                <input type="text" required class="w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none" placeholder="Alamat email atau WhatsApp">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">Subjek Pesan *</label>
+                                <input type="text" required class="w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none" placeholder="Topik pertanyaan">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">Pesan / Pertanyaan *</label>
+                                <textarea rows="4" required class="w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none" placeholder="Tuliskan pesan Anda..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-brand-blue hover:bg-blue-900 text-white font-bold py-2.5 rounded-lg shadow transition text-sm">
+                                Kirim Pesan
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- NEWS MODAL (Pop-Up Detail Berita) -->
+    <div id="news-modal" class="fixed inset-0 z-50 bg-black/60 hidden backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative animate-fade-in">
+            <button onclick="closeNewsModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <span id="modal-date" class="text-xs text-brand-gold font-semibold uppercase"></span>
+            <h3 id="modal-title" class="text-xl font-bold text-slate-800 mt-1 mb-4"></h3>
+            <div id="modal-content" class="text-slate-600 text-sm leading-relaxed mb-6"></div>
+            <button onclick="closeNewsModal()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold py-2 rounded-lg text-sm">Tutup</button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-blue text-white pt-12 pb-6 border-t border-blue-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- Branding -->
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center p-1">
+                            <svg class="w-5 h-5 text-brand-blue" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
+                        </div>
+                        <h3 class="font-bold text-base">SD N 1 TEJOREJO</h3>
+                    </div>
+                    <p class="text-xs text-blue-200 leading-relaxed">Mendidik dengan hati, membentuk karakter mulia, dan menciptakan lulusan berkualitas serta siap menyongsong masa depan.</p>
+                </div>
+
+                <!-- Tautan Cepat -->
+                <div>
+                    <h4 class="font-bold text-brand-gold text-sm mb-3">Tautan Cepat</h4>
+                    <ul class="space-y-2 text-xs text-blue-100">
+                        <li><button onclick="switchTab('profil')" class="hover:text-brand-gold">Profil Sekolah</button></li>
+                        <li><button onclick="switchTab('guru')" class="hover:text-brand-gold">Guru & Tendik</button></li>
+                        <li><button onclick="switchTab('ppdb')" class="hover:text-brand-gold">Informasi PPDB</button></li>
+                        <li><button onclick="switchTab('galeri')" class="hover:text-brand-gold">Galeri Kegiatan</button></li>
+                    </ul>
+                </div>
+
+                <!-- Jam Operasional -->
+                <div>
+                    <h4 class="font-bold text-brand-gold text-sm mb-3">Jam Belajar</h4>
+                    <ul class="space-y-1.5 text-xs text-blue-100">
+                        <li>Senin - Kamis: 07.00 - 12.30 WIB</li>
+                        <li>Jumat: 07.00 - 11.00 WIB</li>
+                        <li>Sabtu: 07.00 - 12.00 WIB</li>
+                        <li class="text-amber-300 pt-1">Minggu & Hari Libur: Tutup</li>
+                    </ul>
+                </div>
+
+                <!-- Sosial Media & Kontak -->
+                <div>
+                    <h4 class="font-bold text-brand-gold text-sm mb-3">Ikuti Kami</h4>
+                    <div class="flex space-x-3 mb-4">
+                        <a href="#" class="w-8 h-8 rounded-full bg-blue-800 flex items-center justify-center text-white hover:bg-brand-gold hover:text-slate-900 transition"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-blue-800 flex items-center justify-center text-white hover:bg-brand-gold hover:text-slate-900 transition"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-blue-800 flex items-center justify-center text-white hover:bg-brand-gold hover:text-slate-900 transition"><i data-lucide="youtube" class="w-4 h-4"></i></a>
+                    </div>
+                    <p class="text-xs text-blue-200">Email: sdn1tejorejo@sch.id</p>
+                </div>
+            </div>
+
+            <div class="border-t border-blue-800/80 pt-6 text-center text-xs text-blue-300">
+                <p>&copy; 2026 SD Negeri 1 Tejorejo. Hak Cipta Dilindungi Undang-Undang.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Init Lucide Icons
+        lucide.createIcons();
+
+        // Single Page Tab Navigation Logic
+        function switchTab(tabId) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.add('hidden'));
+
+            // Remove active classes from nav buttons
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => btn.classList.remove('active-tab'));
+
+            const mobNavButtons = document.querySelectorAll('.mob-nav-btn');
+            mobNavButtons.forEach(btn => btn.classList.remove('active-mobile-tab'));
+
+            // Show selected section
+            const selectedSection = document.getElementById(`section-${tabId}`);
+            if (selectedSection) {
+                selectedSection.classList.remove('hidden');
+            }
+
+            // Set active nav styles
+            const activeNav = document.getElementById(`nav-${tabId}`);
+            if (activeNav) {
+                activeNav.classList.add('active-tab');
+            }
+
+            const activeMobNav = document.getElementById(`mob-nav-${tabId}`);
+            if (activeMobNav) {
+                activeMobNav.classList.add('active-mobile-tab');
+            }
+
+            // Close mobile menu if open
+            document.getElementById('mobile-menu').classList.add('hidden');
+
+            // Scroll top smooth
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Modal Berita Logic
+        function openNewsModal(title, date, content) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-date').innerText = date;
+            document.getElementById('modal-content').innerText = content;
+            document.getElementById('news-modal').classList.remove('hidden');
+        }
+
+        function closeNewsModal() {
+            document.getElementById('news-modal').classList.add('hidden');
+        }
+
+        // Filter Galeri Logic
+        function filterGallery(category) {
+            const items = document.querySelectorAll('.gallery-item');
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Active button state for gallery
+            const filterBtns = document.querySelectorAll('.gallery-filter-btn');
+            filterBtns.forEach(btn => {
+                btn.classList.remove('bg-brand-blue', 'text-white');
+                btn.classList.add('bg-white', 'text-slate-600');
+            });
+            event.target.classList.remove('bg-white', 'text-slate-600');
+            event.target.classList.add('bg-brand-blue', 'text-white');
+        }
+
+        // Form Handlers
+        function handlePPDBSubmit(event) {
+            event.preventDefault();
+            const alertBox = document.getElementById('ppdb-alert');
+            alertBox.classList.remove('hidden');
+            document.getElementById('form-ppdb').reset();
+        }
+
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            const alertBox = document.getElementById('contact-alert');
+            alertBox.classList.remove('hidden');
+            document.getElementById('form-kontak').reset();
+            setTimeout(() => {
+                alertBox.classList.add('hidden');
+            }, 4000);
+        }
+
+        // Set Default Active Tab on Load
+        window.addEventListener('DOMContentLoaded', () => {
+            switchTab('beranda');
+        });
+    </script>
+</body>
+</html>
