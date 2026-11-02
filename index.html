@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karya untuk Guru SD | Aplikasi dan E-book</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen">
+
+    <!-- Header / Navbar -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold text-teal-600 flex items-center gap-2">
+                <i class="fa-solid fa-book-bookmark"></i>
+                <span>Bolo Nulis</span>
+            </a>
+            <nav class="flex gap-4 text-sm font-medium">
+                <a href="#aplikasi" class="hover:text-teal-600 transition">Aplikasi</a>
+                <a href="#dukungan" class="hover:text-teal-600 transition">Dukungan</a>
+                <a href="https://bolonulis.github.io/app/panduan.html" target="_blank" class="text-teal-600 hover:underline">Panduan</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section class="bg-gradient-to-b from-teal-50 to-slate-50 py-12 md:py-16">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 leading-tight mb-4">
+                    Kumpulan Aplikasi & Administrasi Pembelajaran SD
+                </h1>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto mb-8">
+                    Dari menyusun RPP hingga mencetak Rapor Kurikulum Merdeka. Tanpa perlu di-instal, cukup dibuka dari laptop atau HP.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="#aplikasi" class="bg-teal-600 hover:bg-teal-700 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition flex items-center gap-2">
+                        <i class="fa-solid fa-rocket"></i> Lihat Aplikasi
+                    </a>
+                    <a href="https://wa.me/6281196939694" target="_blank" class="bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition flex items-center gap-2">
+                        <i class="fa-brands fa-whatsapp"></i> Hubungi Admin
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- WhatsApp Group Banner -->
+        <section class="max-w-4xl mx-auto px-4 my-8">
+            <div class="bg-green-50 border border-green-200 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-4">
+                    <div class="bg-green-500 text-white p-4 rounded-full text-2xl">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-900 text-lg">Gabung Grup WhatsApp Guru</h3>
+                        <p class="text-slate-600 text-sm">Dapatkan info kabar terbaru Rapor Merdeka Digital, RPP Flash, e-book, dan promo gratis.</p>
+                    </div>
+                </div>
+                <a href="https://wa.me/6281196939694" target="_blank" class="bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-xl font-medium text-sm whitespace-nowrap shadow transition">
+                    Gabung Grup
+                </a>
+            </div>
+        </section>
+
+        <!-- Application Cards Section -->
+        <section id="aplikasi" class="max-w-4xl mx-auto px-4 py-8">
+            <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+                <i class="fa-solid fa-cubes text-teal-600"></i> Aplikasi Unggulan
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- App Card 1 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                    <div>
+                        <span class="bg-teal-100 text-teal-800 text-xs font-semibold px-2.5 py-1 rounded-full">Gratis</span>
+                        <h3 class="text-xl font-bold text-slate-900 mt-3 mb-2">Rapor Merdeka Digital</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                            Guru cukup mengisi angka. Nilai rapor, deskripsi capaian, kokurikuler, dan leger dihitung secara otomatis. Dilengkapi 725+ tujuan pembelajaran bawaan siap pakai.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100">
+                        <a href="https://bolonulis.github.io/app/panduan.html" target="_blank" class="text-teal-600 hover:text-teal-700 font-semibold text-sm flex items-center gap-1">
+                            Buka Panduan & Masuk <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- App Card 2 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                    <div>
+                        <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-1 rounded-full">Integrasi AI Gemini</span>
+                        <h3 class="text-xl font-bold text-slate-900 mt-3 mb-2">RPP & Program Kokurikuler</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                            Menyusun rancangan program, jadwal pertemuan, lembar observasi, hingga asesmen sumatif otomatis yang siap diekspor ke format Word & Google Docs.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100">
+                        <a href="https://wa.me/6281196939694" target="_blank" class="text-teal-600 hover:text-teal-700 font-semibold text-sm flex items-center gap-1">
+                            Konsultasi via WhatsApp <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dukungan Section -->
+        <section id="dukungan" class="max-w-4xl mx-auto px-4 py-8">
+            <div class="bg-amber-50 border border-amber-200 rounded-2xl p-6 text-center">
+                <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-3 text-xl">
+                    <i class="fa-solid fa-mug-hot"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-2">Dukungan Sukarela</h3>
+                <p class="text-slate-600 text-sm max-w-xl mx-auto mb-4">
+                    Jika karya-karya ini meringankan pekerjaan Bapak/Ibu guru, Anda dapat memberikan dukungan seikhlasnya untuk pemeliharaan & pengembangan aplikasi. Sepenuhnya sukarela dan mohon menggunakan dana pribadi (bukan dana BOS/sekolah).
+                </p>
+                <a href="https://wa.me/6281196939694?text=Halo%20Admin,%20saya%20ingin%20memberikan%20dukungan%20sukarela" target="_blank" class="inline-block bg-amber-500 hover:bg-amber-600 text-white font-semibold px-5 py-2.5 rounded-xl text-sm transition shadow">
+                    Info Dukungan (WhatsApp Admin)
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 text-center text-sm space-y-4">
+            <div class="flex justify-center gap-6">
+                <a href="https://bolonulis.github.io/syarat.html" class="hover:text-white transition">Syarat Layanan</a>
+                <a href="https://bolonulis.github.io/privasi.html" class="hover:text-white transition">Kebijakan Privasi</a>
+                <a href="https://wa.me/6281196939694" class="hover:text-white transition">Kontak Admin</a>
+            </div>
+            <p>&copy; Bolo Nulis - Admin Rapor Merdeka Digital. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
